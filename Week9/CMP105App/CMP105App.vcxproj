@@ -168,6 +168,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MushManager.cpp" />
     <ClCompile Include="Mushroom.cpp" />
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="DO_NOT_EDIT.txt" />
@@ -184,6 +185,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="MushManager.h" />
     <ClInclude Include="Mushroom.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

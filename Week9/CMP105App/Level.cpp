@@ -12,6 +12,15 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	text.setCharacterSize(24);
 	text.setFillColor(sf::Color::Red);
 	text.setPosition(0, 0);
+
+	playerTex.loadFromFile("gfx/Player.png");
+	player.setInput(input);
+	player.setWindow(window);
+	player.setTexture(&playerTex);
+	player.setSize(sf::Vector2f(128, 128));
+	player.setOrigin(sf::Vector2f(player.getSize().x / 2, player.getSize().y / 2));
+	player.setPosition(444, 0 + player.getSize().y);
+	player.setVelocity(sf::Vector2f(200.f, 0));
 }
 
 Level::~Level()
@@ -22,6 +31,8 @@ Level::~Level()
 // handle user input
 void Level::handleInput(float dt)
 {
+	player.handleInput(dt);
+
 	prevSpawn += dt;
 	if (input->isKeyDown(sf::Keyboard::F) && prevSpawn > .1f)
 	{
@@ -38,6 +49,7 @@ void Level::handleInput(float dt)
 // Update game objects
 void Level::update(float dt)
 {
+	player.update(dt);
 	ballManager.update(dt);
 	mushManager.update(dt);
 	text.setString("Balls: " + std::to_string(ballManager.getAliveSprites()) + "\nMushrooms: " + std::to_string(mushManager.getAliveSprites()));
@@ -47,9 +59,10 @@ void Level::update(float dt)
 void Level::render()
 {
 	beginDraw();
-	window->draw(text);
 	ballManager.render(window);
 	mushManager.render(window);
+	window->draw(player);
+	window->draw(text);
 	endDraw();
 }
 

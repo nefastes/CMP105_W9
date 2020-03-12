@@ -4,6 +4,7 @@
 #include "Framework/Input.h"
 #include "BallManager.h"
 #include "MushManager.h"
+#include "Player.h"
 #include <string>
 #include <iostream>
 
@@ -38,4 +39,8 @@ private:
 	//Debug text
 	sf::Font font;
 	sf::Text text;
+
+	//Player
+	Player player;
+	sf::Texture playerTex;
 };
