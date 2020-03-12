@@ -1,20 +1,17 @@
 #pragma once
-#include "Ball.h"
-#include "Framework/Vector.h"
-#include "math.h"
-
-class BallManager
+#include "Mushroom.h"
+class MushManager
 {
 private:
-	sf::Texture ballTex;
+	sf::Texture mushTex;
 	sf::Vector2f spawnPoint;
-	std::vector<Ball> balls;
+	std::vector<Mushroom> mushrooms;
 
 	int aliveSprites;
 
 public:
-	BallManager();
-	~BallManager();
+	MushManager();
+	~MushManager();
 
 	void spawn();
 	void update(float dt);

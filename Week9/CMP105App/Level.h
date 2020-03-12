@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Framework/Input.h"
 #include "BallManager.h"
+#include "MushManager.h"
 #include <string>
 #include <iostream>
 
@@ -25,7 +26,16 @@ private:
 	sf::RenderWindow* window;
 	Input* input;
 
+	//Time tracker
+	float prevSpawn;
+
 	//Balls
 	BallManager ballManager;
-	float prevSpawn;
+
+	//Mushrooms
+	MushManager mushManager;
+
+	//Debug text
+	sf::Font font;
+	sf::Text text;
 };

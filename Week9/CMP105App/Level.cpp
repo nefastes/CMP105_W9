@@ -7,7 +7,11 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	prevSpawn = 0;
 
 	// initialise game objects
-
+	if (!font.loadFromFile("font/arial.ttf")) std::cout << "Could not load font.\n";
+	text.setFont(font);
+	text.setCharacterSize(24);
+	text.setFillColor(sf::Color::Red);
+	text.setPosition(0, 0);
 }
 
 Level::~Level()
@@ -24,19 +28,28 @@ void Level::handleInput(float dt)
 		ballManager.spawn();
 		prevSpawn = 0;
 	}
+	if (input->isKeyDown(sf::Keyboard::G) && prevSpawn > .1f)
+	{
+		mushManager.spawn();
+		prevSpawn = 0;
+	}
 }
 
 // Update game objects
 void Level::update(float dt)
 {
 	ballManager.update(dt);
+	mushManager.update(dt);
+	text.setString("Balls: " + std::to_string(ballManager.getAliveSprites()) + "\nMushrooms: " + std::to_string(mushManager.getAliveSprites()));
 }
 
 // Render level
 void Level::render()
 {
 	beginDraw();
+	window->draw(text);
 	ballManager.render(window);
+	mushManager.render(window);
 	endDraw();
 }
 
