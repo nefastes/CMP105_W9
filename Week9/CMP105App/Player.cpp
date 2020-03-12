@@ -56,6 +56,7 @@ void Player::update(float dt)
 
 void Player::handleInput(float dt)
 {
+	prevTime += dt;
 	if (input->isKeyDown(sf::Keyboard::Right) || input->isKeyDown(sf::Keyboard::D))
 	{
 		//walk
@@ -82,8 +83,11 @@ void Player::handleInput(float dt)
 	{
 		stepVelocity = sf::Vector2f(0, -600.f);
 	}
-	if (input->isMouseLDown())
+	if (input->isMouseLDown() && prevTime > .1f)
 	{
-		//Add Shoot
+		sf::Vector2f pPos = getPosition();
+		sf::Vector2f mPos = sf::Vector2f(input->getMouseX(), input->getMouseY());
+		missilemanager.spawn(pPos, mPos);
+		prevTime = 0;
 	}
 }

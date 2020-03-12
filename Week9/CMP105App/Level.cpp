@@ -52,7 +52,8 @@ void Level::update(float dt)
 	player.update(dt);
 	ballManager.update(dt);
 	mushManager.update(dt);
-	text.setString("Balls: " + std::to_string(ballManager.getAliveSprites()) + "\nMushrooms: " + std::to_string(mushManager.getAliveSprites()));
+	player.missilemanager.update(dt);
+	text.setString("Balls: " + std::to_string(ballManager.getAliveSprites()) + "\nMushrooms: " + std::to_string(mushManager.getAliveSprites()) +"\nMissiles: " +std::to_string(player.missilemanager.getAliveSprites()));
 }
 
 // Render level
@@ -61,6 +62,7 @@ void Level::render()
 	beginDraw();
 	ballManager.render(window);
 	mushManager.render(window);
+	player.missilemanager.render(window);
 	window->draw(player);
 	window->draw(text);
 	endDraw();
